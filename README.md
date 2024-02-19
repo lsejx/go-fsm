@@ -9,7 +9,7 @@
 	import "github.com/lsejx/go-fsm"
 
 # Types
-|name|type|description|
+|name|kind|description|
 |:---|:---|:----------|
 |FSM|struct|contains initial state id, current state id, and StateMap.|
 |StateMap|map|its key is state id, value is state data which implements State.|
