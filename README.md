@@ -2,7 +2,7 @@
 * Finite-state-machine.
 * Generics.
 * A map type TransitionMap can be used as a simple transition table.
-* It allows custom transition table type because of a interface type State.
+* It allows custom transition table types which implement State interface.
 <br><br>
 
 # Import
