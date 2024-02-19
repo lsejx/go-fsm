@@ -19,30 +19,39 @@
 # Example
 ## Accepts "abc" using TransitionMap
 	// stateIds
+	stateIni := '0'
 	stateA := 'a'
 	stateB := 'b'
 	stateC := 'c'
-	initialState := stateA
 
-	fsm := NewFSM(initialState, StateMap[rune, rune]{
-		stateA: TransitionMap[rune, rune]{
+	fsm := NewFSM(stateIni, StateMap[rune, rune]{
+		stateIni: TransitionMap[rune, rune]{
 			'a': stateA,
+			'b': stateIni,
+			'c': stateIni,
+		},
+		stateA: TransitionMap[rune, rune]{
+			'a': stateIni,
 			'b': stateB,
-			'c': stateA,
+			'c': stateIni,
 		},
 		stateB: TransitionMap[rune, rune]{
-			'a': stateA,
-			'b': stateA,
+			'a': stateIni,
+			'b': stateIni,
 			'c': stateC,
 		},
 		stateC: TransitionMap[rune, rune]{
-			'a': stateC,
-			'b': stateC,
-			'c': stateC,
+			'a': stateA,
+			'b': stateIni,
+			'c': stateIni,
 		},
 	})
 
-	fsm.CurrentStateId() // 'a'
+
+	fsm.CurrentStateId() // '0'
+
+	fsm.Input('b') // nil error
+	fsm.CurrentStateId() // '0'
 
 	fsm.Input('a') // nil error
 	fsm.CurrentStateId() // 'a'
@@ -54,14 +63,15 @@
 	fsm.CurrentStateId() // 'b'
 
 	fsm.Input('b') // nil error
-	fsm.CurrentStateId() // 'a'
+	fsm.CurrentStateId() // '0'
 
+	fsm.Input('a') // nil error
 	fsm.Input('b') // nil error
 	fsm.Input('c') // nil error
 	fsm.CurrentStateId() // 'c'
 
 	fsm.Reset()
-	fsm.CurrentStateId() // 'a'
+	fsm.CurrentStateId() // '0'
 
 
 
