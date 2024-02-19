@@ -13,7 +13,7 @@
 |:---|:---|:----------|
 |FSM|struct|contains initial state id, current state id, and StateMap.|
 |StateMap|map|its key is state id, value is state data which implements State.|
-|State|interface|wraps Next method, which receive input as a parameter and returns next state id based on the input.|
+|State|interface|wraps Next method, which receives a input as a parameter then returns next state id based on the input.|
 |TransitionMap|map|implements State interface, its key is input, value is next state id.|
 
 # Example
